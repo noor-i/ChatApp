@@ -13,6 +13,11 @@ export const signup = async (req, res) => {
         .status(400)
         .json({ message: "Password must be at least 6 characters" });
     }
+
+    if (!fullName || !email || !password) {
+      return res.status(400).json({ message: "All fields must be filled." });
+    }
+
     const user = await User.findOne({ email });
     if (user) return res.status(400).json({ message: "Email already exists." });
 
