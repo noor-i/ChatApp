@@ -74,6 +74,8 @@ export const login = async (req, res) => {
     // generateToken() method is in src/lib/utils.js
     generateToken(user._id, res);
 
+    // Common practice to return basic user info (excluding sensitive data like passwords) after authentication,
+    // so the frontend can display user details and use the _id for API requests that require the user’s identity.
     res.status(200).json({
       _id: user._id,
       fullName: user.fullName,
@@ -86,6 +88,12 @@ export const login = async (req, res) => {
   }
 };
 
+/* Functionality:
+ * - Overwrites the "jwt" cookie with an empty string and sets its maxAge to 0
+ *   → Effectively deletes the cookie from the user's browser
+ * - Sends a success response with a logout confirmation message
+ * - Catches and logs any unexpected errors, responding with a 500 status if needed
+ */
 export const logout = (req, res) => {
   try {
     res.cookie("jwt", "", { maxAge: 0 });
