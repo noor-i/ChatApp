@@ -70,6 +70,8 @@ export const login = async (req, res) => {
       return res.status(400).json({ message: "Invalid credentials." });
     }
 
+    // If password matches hashed password, create a token
+    // generateToken() method is in src/lib/utils.js
     generateToken(user._id, res);
 
     res.status(200).json({
