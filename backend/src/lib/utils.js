@@ -16,6 +16,6 @@ export const generateToken = (userId, res) => {
     secure: process.env.NODE_ENV !== "development", // Cookie only sent over HTTPS in production
   });
 
-  // Return the token
+  // Return the token  const token = jwt.sign({ userId }, secret, { expiresIn: "7d" });  const token = jwt.sign({ userId }, secret, { expiresIn: "7d" });
   return token;
 };
