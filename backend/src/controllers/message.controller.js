@@ -36,3 +36,37 @@ export const getMessages = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+export const sendMessage = async (req, res) => {
+  try {
+    const { text, image } = req.body;
+    const { id: receiverId } = req.params;
+    // You can use req.user._id because of the authenticated user object, set by protectRoute.
+    const senderId = req.user._id;
+
+    let imageUrl;
+    // If user sends us an image, then we can upload it to cloudinary
+    if (image) {
+      const uploadResponse = await cloudinary.uploader.upload(image);
+      imageUrl = uploadResponse.secure_url;
+    }
+
+    // Create the new message
+    const newMessage = new Message({
+      senderId,
+      receiverId,
+      text,
+      image: imageUrl,
+    });
+
+    // Inserts document (new message object) to DB
+    await newMessage.save();
+
+    //todo for later: realtime functionality => socket.io
+
+    res.status(201).json(newMessage);
+  } catch (error) {
+    console.log("Error in newMessage controller: ", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
