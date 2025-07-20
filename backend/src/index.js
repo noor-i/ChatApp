@@ -15,7 +15,9 @@ app.use(express.json());
 // Allows you to parse the cookie to grab value of token
 app.use(cookieParser());
 
+// Mounts all authentication-related endpoints under /api/auth (e.g., /api/auth/signup, /api/auth/login)
 app.use("/api/auth", authRoutes);
+// Mounts all messaging-related endpoints under /api/message (e.g., /api/message/send/:id, /api/message/:id)
 app.use("/api/message", messageRoutes);
 
 app.listen(PORT, () => {
