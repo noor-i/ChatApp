@@ -4,6 +4,7 @@ import messageRoutes from "./routes/message.route.js";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import { connectDB } from "./lib/db.js";
+import cors from "cors";
 
 dotenv.config();
 const app = express();
@@ -14,6 +15,12 @@ const PORT = process.env.PORT;
 app.use(express.json());
 // Allows you to parse the cookie to grab value of token
 app.use(cookieParser());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  })
+);
 
 // Mounts all authentication-related endpoints under /api/auth (e.g., /api/auth/signup, /api/auth/login)
 app.use("/api/auth", authRoutes);
