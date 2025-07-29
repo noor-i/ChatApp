@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MessageSquare, User } from "lucide-react";
+import { Mail, MessageSquare, User } from "lucide-react";
 import { useAuthStore } from "../store/useAuthStore";
 
 const SignUpPage = () => {
@@ -58,6 +58,28 @@ const SignUpPage = () => {
                   value={formData.fullName}
                   onChange={(e) =>
                     setFormData({ ...formData, fullName: e.target.value })
+                  }
+                />
+              </div>
+            </div>
+            {/* EMAIL */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text font-medium">Email</span>
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Mail className="size-5 text-base-content/40" />
+                </div>
+                <input
+                  type="text"
+                  className={`input input-bordered w-full pl-10`}
+                  placeholder="you@example.com"
+                  value={formData.email}
+                  // When the user types, this updates only the email field in formData, keeping other fields unchanged.
+                  // The spread operator (...formData) copies all previous values, then we overwrite just email.
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
                   }
                 />
               </div>
