@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
+import AuthImagePattern from "../components/AuthImagePattern";
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -31,7 +32,7 @@ const SignUpPage = () => {
 
   return (
     <div className="min-h-screen grid lg:grid-cols-2">
-      {/* left side */}
+      {/* LEFT SIDE PAGE */}
       <div className="flex flex-col justify-center items-center p-6 sm:p-12">
         <div className="w-full max-w-md space-y-8">
           {/* LOGO */}
@@ -150,6 +151,10 @@ const SignUpPage = () => {
           </div>
         </div>
       </div>
+      <AuthImagePattern
+        title="Join our community"
+        subtitle="Connect, chat, and share with friends—create your free account today and start real-time conversations in a secure and friendly environment."
+      />
     </div>
   );
 };
