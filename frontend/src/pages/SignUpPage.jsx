@@ -48,6 +48,9 @@ const SignUpPage = () => {
   const handleSubmit = (e) => {
     // Prevent the default form submission behavior (page reload)
     e.preventDefault();
+
+    const success = validateForm();
+    if (success) signup(formData);
   };
 
   return (
