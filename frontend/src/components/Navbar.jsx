@@ -25,28 +25,33 @@ const Navbar = () => {
               <h1 className="text-lg font-bold">Chai-Chat</h1>
             </Link>
           </div>
-          {/* SETTINGS AND SETTINGS LOGO*/}
-          <div className="flex items-center gap-2">
-            <Link to="/settings" className="btn btn-sm gap-2 transition-colors">
-              <Settings className="size-4" />
-              <span className="hidden sm:inline">Settings</span>
-            </Link>
-          </div>
-          {authUser && (
-            <>
-              <Link to="/profile" className="btn btn-sm gap-2">
-                <User2Icon className="size-5" />
-                <span className="hidden sm:inline">Profile</span>
-              </Link>
-              <button
-                className="flex gap-2 items-center btn btn-md bg-primary/40"
-                onClick={logout}
+          <div className="flex gap-3">
+            {/* SETTINGS AND SETTINGS LOGO*/}
+            <div className="flex items-center gap-2">
+              <Link
+                to="/settings"
+                className="btn btn-sm gap-2 transition-colors"
               >
-                <LogOut className="size-5" />
-                <span className="hidden sm:inline">Logout</span>
-              </button>
-            </>
-          )}
+                <Settings className="size-4" />
+                <span className="hidden sm:inline">Settings</span>
+              </Link>
+            </div>
+            {authUser && (
+              <>
+                <Link to="/profile" className="btn btn-sm gap-2">
+                  <User2Icon className="size-5" />
+                  <span className="hidden sm:inline">Profile</span>
+                </Link>
+                <button
+                  className="flex gap-2 items-center btn btn-sm bg-primary/40 hover:bg-primary/70"
+                  onClick={logout}
+                >
+                  <LogOut className="size-5" />
+                  <span className="hidden sm:inline">Logout</span>
+                </button>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </header>
