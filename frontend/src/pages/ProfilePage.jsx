@@ -5,7 +5,29 @@ import { Camera, Mail, User } from "lucide-react";
 const ProfilePage = () => {
   const { authUser, updateProfile, isUpdatingProfile } = useAuthStore();
   const [profilePic, setProfilePic] = useState("");
-  const handleImageUpload = async (e) => {};
+
+  const handleImageUpload = async (e) => {
+    // When the user selects a file, this event is triggered
+
+    // Get the first file from the input (e.g., an image)
+    const file = e.target.files[0];
+    //If there is no file, just return
+    if (!file) return;
+    // Create a new FileReader object to read the file
+
+    const reader = new FileReader();
+
+    // Read the file and convert it to a base64-encoded string (Data URL)
+    reader.readAsDataURL(file);
+
+    // When FileReader finishes reading the file:
+    reader.onload = async () => {
+      // reader.result contains the base64 string of the image
+      const base64Image = reader.result;
+      // Update the user's profile picture with the new image
+      await updateProfile({ profilePic: base64Image });
+    };
+  };
 
   return (
     <div className="h-screen pt-20">
