@@ -4,7 +4,7 @@ import { Camera, Mail, User } from "lucide-react";
 
 const ProfilePage = () => {
   const { authUser, updateProfile, isUpdatingProfile } = useAuthStore();
-  const [profilePic, setProfilePic] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const handleImageUpload = async (e) => {
     // When the user selects a file, this event is triggered
@@ -24,6 +24,7 @@ const ProfilePage = () => {
     reader.onload = async () => {
       // reader.result contains the base64 string of the image
       const base64Image = reader.result;
+      setSelectedImage(base64Image);
       // Update the user's profile picture with the new image
       await updateProfile({ profilePic: base64Image });
     };
@@ -43,7 +44,7 @@ const ProfilePage = () => {
             <div className="relative">
               <img
                 className="size-32 rounded-full object-cover border-3"
-                src={authUser.profilePic || "/avatar.png"}
+                src={selectedImage || authUser.profilePic || "/avatar.png"}
                 alt="profile-pic"
               />
               <label
