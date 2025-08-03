@@ -11,8 +11,11 @@ const app = express();
 
 const PORT = process.env.PORT;
 
-// Allows you to extract json data out of body
-app.use(express.json());
+// Allows you to extract json data out of body (increase limit for large files)
+app.use(express.json({ limit: "10mb" }));
+// If you use urlencoded for forms, also increase its limit:
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
+
 // Allows you to parse the cookie to grab value of token
 app.use(cookieParser());
 app.use(
