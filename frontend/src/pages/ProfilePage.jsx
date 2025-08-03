@@ -21,7 +21,7 @@ const ProfilePage = () => {
             <div className="relative">
               <img
                 className="size-32 rounded-full object-cover border-3"
-                src={authUser.profilePic || "../public/avatar.png"}
+                src={authUser.profilePic || "/avatar.png"}
                 alt="profile-pic"
               />
               <label
