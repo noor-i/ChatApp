@@ -21,7 +21,7 @@ const Sidebar = () => {
 
   return (
     <aside className="h-full w-20 lg:w-72 border-r border-base-300 flex flex-col transition-all duration-200">
-      <div className="w-full border-b border-base-300 p-5">
+      <div className="w-full border-b border-base-300 p-4.75">
         {/* Sidebar header */}
         <div className="flex items-center gap-2 pt-1.5">
           <Users className="size-6" />
