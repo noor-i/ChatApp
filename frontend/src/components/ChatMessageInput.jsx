@@ -30,9 +30,16 @@ const ChatMessageInput = () => {
     reader.readAsDataURL(file);
   };
 
-  const removeImage = () => {};
+  const removeImage = () => {
+    setImagePreview(null);
+    // fileInputRef.current is the DOM node for the file input, or null if not rendered.
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
 
-  const handleSendMessage = async (e) => {};
+  const handleSendMessage = async (e) => {
+    // Prevent page from refreshing after sending message
+    e.preventDefault();
+  };
 
   return (
     <div className="p-4 w-full">
