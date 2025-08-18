@@ -89,16 +89,21 @@ export const useAuthStore = create((set, get) => ({
     }
   },
 
-  connectSocket: async () => {
+  connectSocket: () => {
     // Get the current authenticated user from the store
     const { authUser } = get();
     // If there is no authenticated user or the socket is already connected, do nothing
     if (!authUser || get().socket?.connected) return;
+
     // Create a new Socket.io connection to the backend server
     const socket = io(BASE_URL);
+    set({ socket: socket });
 
     // Explicitly connect the socket
     socket.connect();
   },
-  disconnectSocket: async () => {},
+  disconnectSocket: () => {
+    //Check if connected, only then disconnect
+    if (get().socket?.connected) get().socket.disconnect();
+  },
 }));
