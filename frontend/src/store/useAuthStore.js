@@ -96,12 +96,22 @@ export const useAuthStore = create((set, get) => ({
     if (!authUser || get().socket?.connected) return;
 
     // Create a new Socket.io connection to the backend server
-    const socket = io(BASE_URL);
+    const socket = io(BASE_URL, {
+      query: {
+        userId: authUser._id,
+      },
+    });
     set({ socket: socket });
 
     // Explicitly connect the socket
     socket.connect();
+
+    // Listen for "getOnlineUsers" events emitted from backend io.emit()
+    socket.on("getOnlineUsers", (userIds) => {
+      set({ onlineUsers: userIds });
+    });
   },
+
   disconnectSocket: () => {
     //Check if connected, only then disconnect
     if (get().socket?.connected) get().socket.disconnect();
