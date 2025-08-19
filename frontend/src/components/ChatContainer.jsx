@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useChatStore } from "../store/useChatStore";
 import { useEffect } from "react";
 import ChatHeader from "./ChatHeader";
@@ -8,14 +8,31 @@ import { useAuthStore } from "../store/useAuthStore";
 import formatMessageTime from "../lib/time";
 
 const ChatContainer = () => {
-  const { getMessages, messages, isMessagesLoading, selectedUser } =
-    useChatStore();
+  const {
+    getMessages,
+    messages,
+    isMessagesLoading,
+    selectedUser,
+    subscribeToMessages,
+    unsubscribeFromMessages,
+  } = useChatStore();
 
   const { authUser } = useAuthStore();
+
   // Run getMessages whenever anything in the dependency array changes (selectedUser or getMessages function)
   useEffect(() => {
     getMessages(selectedUser._id);
-  }, [selectedUser._id, getMessages]);
+
+    subscribeFromMessages();
+
+    // Cleans up old message listeners when the chat changes or the component unmounts.
+    return () => unsubscribeFromMessages();
+  }, [
+    selectedUser._id,
+    getMessages,
+    subscribeToMessages,
+    unsubscribeFromMessages,
+  ]);
 
   if (isMessagesLoading) {
     return (
