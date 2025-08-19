@@ -18,6 +18,7 @@ const ChatContainer = () => {
   } = useChatStore();
 
   const { authUser } = useAuthStore();
+  const messageEndRef = useRef(null);
 
   // Run getMessages whenever anything in the dependency array changes (selectedUser or getMessages function)
   useEffect(() => {
@@ -33,6 +34,14 @@ const ChatContainer = () => {
     subscribeToMessages,
     unsubscribeFromMessages,
   ]);
+
+  // This is to scroll to most recent message
+  useEffect(() => {
+    // Checks if ref is pointing to an actual DOM element and not null, & if messages exists
+    if (messageEndRef.current && messages) {
+      messageEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
 
   if (isMessagesLoading) {
     return (
@@ -54,6 +63,7 @@ const ChatContainer = () => {
             className={`chat ${
               message.senderId === authUser._id ? "chat-end" : "chat-start"
             }`}
+            ref={messageEndRef}
           >
             {/* profile pic of sender */}
             <div className="chat-image avatar">
