@@ -24,7 +24,7 @@ const ChatContainer = () => {
   useEffect(() => {
     getMessages(selectedUser._id);
 
-    subscribeFromMessages();
+    subscribeToMessages();
 
     // Cleans up old message listeners when the chat changes or the component unmounts.
     return () => unsubscribeFromMessages();
