@@ -1,6 +1,9 @@
 import { config } from "dotenv";
+import { connectDB } from "../lib/db.js";
+import User from "../models/user.model.js";
 config();
 
+// Field profilePic uses image URLs from randomuser.me, free API that provides random user profile pics
 const seedUsers = [
   // Female Users
   {
@@ -96,3 +99,17 @@ const seedUsers = [
     profilePic: "https://randomuser.me/api/portraits/men/7.jpg",
   },
 ];
+
+// Create seeding method
+const seedDatabase = async () => {
+  try {
+    await connectDB();
+    await User.insertMany(seedUsers);
+    console.log("Database seeded successfully.");
+  } catch (error) {
+    console.log("Error seeding database:", error);
+  }
+};
+
+// Call the seeding method
+seedDatabase();
