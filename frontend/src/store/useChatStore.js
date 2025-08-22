@@ -58,8 +58,11 @@ export const useChatStore = create((set, get) => ({
     // Directly gets the current state from the Zustand store, outside of a React component.
     const socket = useAuthStore.getState().socket;
 
-    //todo: optimize this later
     socket.on("newMessage", (newMessage) => {
+      // Only add new message if user sending the message matches the selected user id
+      if (newMessage.senderId !== selectedUser._id) {
+        return;
+      }
       set({
         messages: [...get().messages, newMessage],
       });
@@ -71,6 +74,5 @@ export const useChatStore = create((set, get) => ({
     socket.off("newMessage");
   },
 
-  // optimize this later TODO
   setSelectedUser: (selectedUser) => set({ selectedUser }),
 }));
