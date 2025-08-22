@@ -1,4 +1,4 @@
-# Chai-Chat 💬
+# Chai-Chat 🍵 💬
 
 A modern, full-stack chat application built with the **MERN stack** (MongoDB, Express, React, Node.js), supporting real-time messaging via web sockets and a sleek UI.
 
