@@ -1,0 +1,22 @@
+{
+  "name": "chatapp",
+  "version": "1.0.0",
+  "description": "A modern, full-stack chat application built with the **MERN stack** (MongoDB, Express, React, Node.js), supporting real-time messaging via web sockets and a sleek UI.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "npm run start --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noor-i/ChatApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/noor-i/ChatApp/issues"
+  },
+  "homepage": "https://github.com/noor-i/ChatApp#readme"
+}
