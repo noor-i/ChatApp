@@ -2,6 +2,15 @@
 
 A modern, full-stack chat application built with the **MERN stack** (MongoDB, Express, React, Node.js), supporting real-time messaging via web sockets and a sleek UI.
 
+<img width="600" height="323" alt="Screenshot 2025-08-23 at 2 41 05 PM" src="https://github.com/user-attachments/assets/08d80c6c-5f66-4cf4-be88-94c77c0584c0" />
+
+<img width="600" height="450" alt="Screenshot 2025-08-23 at 3 07 10 PM" src="https://github.com/user-attachments/assets/66a1e011-5eda-498e-915a-569b9b2a51a5" />
+
+
+<img width="600" height="500" alt="Screenshot 2025-08-23 at 2 42 20 PM" src="https://github.com/user-attachments/assets/3c7d15b7-0924-498d-a1a5-c80e7e9f81b9" />
+
+
+
 ## Tech Stack
 
 ### Frontend
