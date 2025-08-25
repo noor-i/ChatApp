@@ -38,7 +38,7 @@ if (process.env.NODE_ENV === "production") {
 
   // For any route not handled by the API or a static file,
   // send back index.html so React Router can handle client-side routing
-  app.get("*", (req, res) => {
+  app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
   });
 }
