@@ -1,4 +1,5 @@
 import express from "express";
+import { rateLimit } from "express-rate-limit";
 import {
   login,
   logout,
@@ -7,11 +8,18 @@ import {
   checkAuth,
 } from "../controllers/auth.controller.js";
 import { protectRoute } from "../middleware/auth.middleware.js";
+import { app } from "../lib/socket.js";
 
 const router = express.Router();
 
-router.post("/signup", signup);
-router.post("/login", login);
+const limiter = rateLimit({
+  max: 5, // Requests allowed per timeframe (5 requests / minute)
+  windowMs: 60 * 1000, // Timeframe in milliseconds (1 minute here)
+  message: "Too many requests from this IP. Please try again later.",
+});
+
+router.post("/signup", limiter, signup);
+router.post("/login", limiter, login);
 router.post("/logout", logout);
 
 // If user wants to update their profile, first we would want to check if they are logged in.
